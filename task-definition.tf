@@ -10,6 +10,7 @@ module "app_container_definition" {
   essential                    = true
   environment                  = var.container_environment
   log_configuration            = var.container_log_configuration
+  secrets                      = var.container_secrets
 }
 
 resource "aws_ecs_task_definition" "main" {
