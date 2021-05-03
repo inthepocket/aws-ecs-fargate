@@ -96,6 +96,15 @@ variable "container_environment" {
   default = []
 }
 
+variable "container_secrets" {
+  description = "(Optional) The secrets to pass to the container. This is a list of maps"
+  type = list(object({
+    name      = string
+    valueFrom = string
+  }))
+  default = []
+}
+
 variable "container_log_configuration" {
   description = "(Optional) Log configuration options to send to a custom log driver for the container. For more details, see https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html"
   type = object({

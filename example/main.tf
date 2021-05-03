@@ -36,8 +36,8 @@ module "test_service_fargate" {
 }
 
 resource "aws_iam_role_policy" "test_service_task_role_policy" {
-  name = "${local.service_name}-task-role-policy"
-  role = module.test_service_fargate.task_role_id
+  name = "${local.service_name}-task-execution-role-policy"
+  role = module.test_service_fargate.task_execution_role_id
 
   policy = jsonencode(
     {
@@ -52,5 +52,6 @@ resource "aws_iam_role_policy" "test_service_task_role_policy" {
           ]
         }
       ]
-  })
+    }
+  )
 }

@@ -9,6 +9,6 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy_attach
 }
 
 resource "aws_iam_role" "task_role" {
-  name               = "ecs_tasks-${var.name}-role"
+  name               = "${var.name}-ecs-task-role"
   assume_role_policy = file("${path.module}/files/iam/ecs_task_role_policy.json")
 }
