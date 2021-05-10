@@ -129,7 +129,7 @@ variable "lb_target_group_arns" {
 
 variable "security_groups" {
   description = "(Optional) The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used."
-  type        = list(any)
+  type        = list(string)
   default     = []
 }
 
@@ -185,4 +185,10 @@ variable "min_cpu_period" {
   description = "The period in seconds over which the specified statistic is applied for min cpu metric alarm"
   default     = "60"
   type        = string
+}
+
+variable "service_registries" {
+  description = "Service discovery registries for the service. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#service_registries."
+  default     = []
+  type        = list(map(string))
 }
