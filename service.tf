@@ -19,6 +19,17 @@ resource "aws_ecs_service" "main" {
     }
   }
 
+  dynamic "service_registries" {
+    for_each = var.service_registries
+
+    content {
+      registry_arn   = service_registries.value["registry_arn"]
+      port           = lookup(service_registries.value, "port", null)
+      container_port = lookup(service_registries.value, "container_port", null)
+      container_name = lookup(service_registries.value, "container_name", null)
+    }
+  }
+
   depends_on = [
     aws_ecs_task_definition.main,
   ]

@@ -186,3 +186,9 @@ variable "min_cpu_period" {
   default     = "60"
   type        = string
 }
+
+variable "service_registries" {
+  description = "Service discovery registries for the service. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#service_registries."
+  default     = []
+  type        = list(map(string))
+}
