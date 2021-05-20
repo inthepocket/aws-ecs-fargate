@@ -2,7 +2,7 @@ resource "aws_ecs_service" "main" {
   name            = "${var.name}-service"
   cluster         = var.cluster_id
   task_definition = aws_ecs_task_definition.main.arn
-  desired_count   = var.desired_count
+  desired_count   = var.initial_desired_count
   launch_type     = "FARGATE"
 
   network_configuration {
@@ -28,6 +28,12 @@ resource "aws_ecs_service" "main" {
       container_port = lookup(service_registries.value, "container_port", null)
       container_name = lookup(service_registries.value, "container_name", null)
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      desired_count,
+    ]
   }
 
   depends_on = [
