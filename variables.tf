@@ -133,8 +133,8 @@ variable "security_groups" {
   default     = []
 }
 
-variable "desired_count" {
-  description = "(Optional) The number of instances of the task definition to place and keep running. Defaults to 0."
+variable "initial_desired_count" {
+  description = "(Optional) The number of instances of the task definition to place and keep running. Defaults to 1. Only applicable on first creation of ECS service, after creation every change to initial_desired_count will be ignored."
   type        = number
   default     = 1
 }
